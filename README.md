@@ -18,10 +18,10 @@ config from code allows:
 
 | File                              | Served to                                 |
 |------------------------------------|--------------------------------------------|
-| `application.properties`          | **All** services (shared config)          |
-| `auth-service.properties`         | `auth-service` only                       |
-| `encadrement-service.properties`  | `encadrement-service` only                |
-| `api-gateway.properties`          | `api-gateway` only                        |
+| `application.yaml`          | **All** services (shared config)          |
+| `auth-service.yaml`         | `auth-service` only                       |
+| `encadrement-service.yaml`  | `encadrement-service` only                |
+| `api-gateway.yaml`          | `api-gateway` only                        |
 
 The file name matches exactly the `spring.application.name` value of the
 consuming microservice.
@@ -29,13 +29,17 @@ consuming microservice.
 ## How a microservice fetches its config
 
 Each microservice points to the Config Server in its own local
-`application.properties`:
+`application.yaml`:
 
 ```properties
-spring.application.name=auth-service
-spring.config.import=optional:configserver:http://localhost:8888
+spring:
+application:
+name: auth-service
+
+config:
+import: configserver:http://localhost:8888
 ```
 
-On startup, `auth-service` fetches `application.properties` (shared config)
-**then** `auth-service.properties` (service-specific config) from this repo,
+On startup, `auth-service` fetches `application.yaml` (shared config)
+**then** `auth-service.yaml` (service-specific config) from this repo,
 through the Config Server.

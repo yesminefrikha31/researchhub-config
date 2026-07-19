@@ -1,0 +1,19 @@
+server:
+  port: 8080
+spring:
+  cloud:
+    gateway:
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: true
+          routes:
+            - id: auth-service
+              uri: lb://auth-service
+              predicates:
+                - Path=/api/v1/members/**
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
