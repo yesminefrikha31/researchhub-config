@@ -13,6 +13,10 @@ spring:
               uri: lb://auth-service
               predicates:
                 - Path=/api/v1/members/**
+            - id: supervision-service
+              uri: lb://supervision-service
+              predicates:
+                - Path=/api/v1/topics/**, /api/v1/requests/**
 
 logging:
   level:

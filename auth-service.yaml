@@ -17,12 +17,6 @@ spring:
     enabled: true
     change-log: classpath:db/changelog/db.changelog-master.xml
 
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: http://localhost:8080/realms/researchhub
-
 logging:
   level:
     com.researchhub: DEBUG
